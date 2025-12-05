@@ -1,0 +1,281 @@
+{
+  "letta-client-init": {
+    "prefix": "letta-client-init",
+    "body": [
+      "from letta import LettaClient",
+      "",
+      "client = LettaClient(",
+      "\ttoken='${1:YOUR_API_KEY}',",
+      "\tproject='${2:YOUR_PROJECT_ID}'",
+      ")"
+    ],
+    "description": "Initialize Letta client with API key for cloud deployment"
+  },
+  "letta-client-self-hosted": {
+    "prefix": "letta-client-self-hosted",
+    "body": [
+      "from letta import LettaClient",
+      "",
+      "client = LettaClient(",
+      "\tbase_url='${1:http://localhost:8283}'",
+      ")"
+    ],
+    "description": "Initialize Letta client for local/self-hosted server"
+  },
+  "letta-agent-create": {
+    "prefix": "letta-agent-create",
+    "body": [
+      "agent = client.agents.create(",
+      "\tname='${1:my_agent}',",
+      "\tmemory_blocks=[",
+      "\t\t{",
+      "\t\t\t'label': '${2:human}',",
+      "\t\t\t'value': '${3:User information}'",
+      "\t\t},",
+      "\t\t{",
+      "\t\t\t'label': '${4:persona}',",
+      "\t\t\t'value': '${5:Agent personality}'",
+      "\t\t}",
+      "\t],",
+      "\tmodel='${6:openai/gpt-4}',",
+      "\tembedding='${7:openai/text-embedding-ada-002}',",
+      "\tsystem='${8:You are a helpful AI assistant.}'",
+      ")"
+    ],
+    "description": "Create a new Letta agent with memory blocks and model configuration"
+  },
+  "letta-agent-retrieve": {
+    "prefix": "letta-agent-retrieve",
+    "body": [
+      "agent = client.agents.retrieve('${1:agent_id}')"
+    ],
+    "description": "Retrieve agent by ID"
+  },
+  "letta-agent-list": {
+    "prefix": "letta-agent-list",
+    "body": [
+      "agents = client.agents.list(",
+      "\tlimit=${1:10},",
+      "\tcursor='${2:}'",
+      ")"
+    ],
+    "description": "List all agents with pagination"
+  },
+  "letta-agent-modify": {
+    "prefix": "letta-agent-modify",
+    "body": [
+      "updated_agent = client.agents.update(",
+      "\t'${1:agent_id}',",
+      "\tname='${2:updated_name}',",
+      "\tsystem='${3:Updated system prompt}',",
+      "\tmodel='${4:openai/gpt-4-turbo}'",
+      ")"
+    ],
+    "description": "Update agent configuration (name, system prompt, model, etc.)"
+  },
+  "letta-agent-delete": {
+    "prefix": "letta-agent-delete",
+    "body": [
+      "client.agents.delete('${1:agent_id}')"
+    ],
+    "description": "Delete an agent by ID"
+  },
+  "letta-send-message": {
+    "prefix": "letta-send-message",
+    "body": [
+      "response = client.agents.messages.create(",
+      "\t'${1:agent_id}',",
+      "\tinput='${2:Hello, how are you?}',",
+      "\tstreaming=False",
+      ")"
+    ],
+    "description": "Send a message to an agent and get complete response"
+  },
+  "letta-send-message-stream": {
+    "prefix": "letta-send-message-stream",
+    "body": [
+      "stream = client.agents.messages.create(",
+      "\t'${1:agent_id}',",
+      "\tinput='${2:Hello, how are you?}',",
+      "\tstreaming=True,",
+      "\tstream_tokens=${3:True}",
+      ")",
+      "",
+      "for chunk in stream:",
+      "\tprint(chunk)"
+    ],
+    "description": "Stream response from agent with SSE"
+  },
+  "letta-messages-list": {
+    "prefix": "letta-messages-list",
+    "body": [
+      "messages = client.agents.messages.list(",
+      "\t'${1:agent_id}',",
+      "\tlimit=${2:50},",
+      "\tcursor='${3:}'",
+      ")"
+    ],
+    "description": "List agent message history with pagination"
+  },
+  "letta-messages-reset": {
+    "prefix": "letta-messages-reset",
+    "body": [
+      "client.agents.messages.reset('${1:agent_id}')"
+    ],
+    "description": "Clear agent message history"
+  },
+  "letta-block-create": {
+    "prefix": "letta-block-create",
+    "body": [
+      "block = client.blocks.create(",
+      "\tlabel='${1:custom_block}',",
+      "\tvalue='${2:Block content}',",
+      "\tdescription='${3:Block description}',",
+      "\tlimit=${4:2000}",
+      ")"
+    ],
+    "description": "Create a new memory block"
+  },
+  "letta-block-attach": {
+    "prefix": "letta-block-attach",
+    "body": [
+      "client.agents.blocks.attach(",
+      "\t'${1:agent_id}',",
+      "\t'${2:block_id}'",
+      ")"
+    ],
+    "description": "Attach a memory block to an agent"
+  },
+  "letta-block-detach": {
+    "prefix": "letta-block-detach",
+    "body": [
+      "client.agents.blocks.detach(",
+      "\t'${1:agent_id}',",
+      "\t'${2:block_id}'",
+      ")"
+    ],
+    "description": "Detach a memory block from an agent"
+  },
+  "letta-folder-create": {
+    "prefix": "letta-folder-create",
+    "body": [
+      "folder = client.folders.create(",
+      "\tname='${1:my_folder}',",
+      "\tdescription='${2:Folder description}'",
+      ")"
+    ],
+    "description": "Create a new folder for file storage"
+  },
+  "letta-folder-attach": {
+    "prefix": "letta-folder-attach",
+    "body": [
+      "client.agents.folders.attach(",
+      "\t'${1:agent_id}',",
+      "\t'${2:folder_id}'",
+      ")"
+    ],
+    "description": "Attach a folder to an agent"
+  },
+  "letta-file-upload": {
+    "prefix": "letta-file-upload",
+    "body": [
+      "with open('${2:path/to/file.txt}', 'rb') as f:",
+      "\tfile = client.folders.files.create(",
+      "\t\t'${1:folder_id}',",
+      "\t\tfile=f,",
+      "\t\tfilename='${3:document.txt}'",
+      "\t)"
+    ],
+    "description": "Upload a file to a folder"
+  },
+  "letta-file-delete": {
+    "prefix": "letta-file-delete",
+    "body": [
+      "client.folders.files.delete(",
+      "\t'${1:folder_id}',",
+      "\t'${2:file_id}'",
+      ")"
+    ],
+    "description": "Delete a file from a folder"
+  },
+  "letta-archive-create": {
+    "prefix": "letta-archive-create",
+    "body": [
+      "archive = client.archives.create(",
+      "\tname='${1:my_archive}',",
+      "\tdescription='${2:Archive description}',",
+      "\tembedding='${3:openai/text-embedding-ada-002}'",
+      ")"
+    ],
+    "description": "Create a new archive for semantic memory storage"
+  },
+  "letta-archive-attach": {
+    "prefix": "letta-archive-attach",
+    "body": [
+      "client.agents.archives.attach(",
+      "\t'${1:agent_id}',",
+      "\t'${2:archive_id}'",
+      ")"
+    ],
+    "description": "Attach an archive to an agent"
+  },
+  "letta-passage-create": {
+    "prefix": "letta-passage-create",
+    "body": [
+      "passage = client.archives.passages.create(",
+      "\t'${1:archive_id}',",
+      "\ttext='${2:Passage text content}',",
+      "\tmetadata={",
+      "\t\t'${3:key}': '${4:value}'",
+      "\t}",
+      ")"
+    ],
+    "description": "Add a text passage to an archive"
+  },
+  "letta-tool-create": {
+    "prefix": "letta-tool-create",
+    "body": [
+      "tool_code = '''",
+      "def ${1:custom_tool}(${2:param}: ${3:str}) -> ${4:str}:",
+      "\t\"\"\"${5:Tool description}",
+      "\t",
+      "\tArgs:",
+      "\t\t${2:param} (${3:str}): ${6:Parameter description}",
+      "\t",
+      "\tReturns:",
+      "\t\t${4:str}: ${7:Return description}",
+      "\t\"\"\"",
+      "\treturn ${8:result}",
+      "'''",
+      "",
+      "tool = client.tools.create(",
+      "\tname='${1:custom_tool}',",
+      "\tsource_code=tool_code",
+      ")"
+    ],
+    "description": "Create a custom tool with Python source code"
+  },
+  "letta-tool-attach": {
+    "prefix": "letta-tool-attach",
+    "body": [
+      "client.agents.tools.attach(",
+      "\t'${1:agent_id}',",
+      "\t'${2:tool_id}'",
+      ")"
+    ],
+    "description": "Attach a tool to an agent"
+  },
+  "letta-identity-create": {
+    "prefix": "letta-identity-create",
+    "body": [
+      "identity = client.identities.create(",
+      "\tname='${1:user_name}',",
+      "\tmetadata={",
+      "\t\t'email': '${2:user@example.com}',",
+      "\t\t'${3:key}': '${4:value}'",
+      "\t}",
+      ")"
+    ],
+    "description": "Create a user identity"
+  }
+}
