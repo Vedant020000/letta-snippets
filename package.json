@@ -6,9 +6,14 @@
   "engines": {
     "vscode": "^1.106.1"
   },
+  "publisher": "vedant0200",
   "categories": [
     "Snippets"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Vedant020000/letta-snippets"
+  },
   "contributes": {
     "snippets": [
       {

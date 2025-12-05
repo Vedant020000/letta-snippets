@@ -1,9 +1,8 @@
 # Letta SDK Snippets
 
 <div align="center">
-<img src="images/preview.png" alt="Letta SDK Snippets Preview" width="100%" />
+<img src="https://raw.githubusercontent.com/Vedant020000/letta-snippets/refs/heads/master/images/preview.png" alt="Letta SDK Snippets Preview" width="100%" />
 
-[![Version](https://img.shields.io/visual-studio-marketplace/v/vedant0200.letta-snippets)](https://marketplace.visualstudio.com/items?itemName=vedant0200.letta-snippets)
 [![Installs](https://img.shields.io/visual-studio-marketplace/i/vedant0200.letta-snippets)](https://marketplace.visualstudio.com/items?itemName=vedant0200.letta-snippets)
 
 **Speed up your AI agent development with 30+ snippets for the Letta SDK.**
