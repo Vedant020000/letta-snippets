@@ -1,75 +1,131 @@
-# Letta Snippets for VS Code
+# Letta SDK Snippets
 
-Code snippets for the Letta SDK (TypeScript & Python). Speed up development with stateful AI agents.
+<div align="center">
+<img src="images/preview.png" alt="Letta SDK Snippets Preview" width="100%" />
 
-## Installation
+[![Version](https://img.shields.io/visual-studio-marketplace/v/vedant0200.letta-snippets)](https://marketplace.visualstudio.com/items?itemName=vedant0200.letta-snippets)
+[![Installs](https://img.shields.io/visual-studio-marketplace/i/vedant0200.letta-snippets)](https://marketplace.visualstudio.com/items?itemName=vedant0200.letta-snippets)
 
-Search "Letta Snippets" in VS Code Extensions
+**Speed up your AI agent development with 30+ snippets for the Letta SDK.**
 
-## Usage
+</div>
 
-Type a prefix and press `Tab`:
+## 🚀 Features
 
-| Prefix      | Description                     |
-| ----------- | ------------------------------- |
-| `la-init`   | Initialize Letta client         |
-| `la-create` | Create agent with memory blocks |
-| `la-msg`    | Send message to agent           |
-| `la-stream` | Stream agent response           |
+- **⚡ Fast Coding**: Use short aliases like `la-create` to generate complex agent configurations instantly.
+- **🛡️ Type Safe**: Snippets include TypeScript interfaces and Python type hints matching SDK v1.0.
+- **🌍 Multi-Language**: Full support for both **TypeScript** (`@letta-ai/letta-client`) and **Python** (`letta`).
+- **🧠 Comprehensive**: Covers Agents, Memory Blocks, Messaging, Archival Storage, and Tools.
 
-## All Snippets
+## 📦 Installation
 
-### Client
+Open VS Code and search for **"Letta SDK Snippets"** in the Extensions view (`Ctrl+Shift+X` or `Cmd+Shift+X`).
 
-- `letta-client-init` / `la-init` - Cloud client
-- `letta-client-self-hosted` / `la-local` - Self-hosted client
+## ⚡ Snippet Cheatsheet
 
-### Agents
+Type the **Prefix** or **Alias** and press `Tab` to insert the snippet.
 
-- `letta-agent-create` / `la-create`
-- `letta-agent-retrieve` / `la-get`
-- `letta-agent-list` / `la-list`
-- `letta-agent-modify` / `la-mod`
-- `letta-agent-delete` / `la-del`
+### 🤖 Agent Management
 
-### Messages
+| Operation           | Full Prefix                  | Short Alias | Description                           |
+| :------------------ | :--------------------------- | :---------- | :------------------------------------ |
+| **Create Agent**    | `letta-agent-create`         | `la-create` | Create new agent with memory & models |
+| **Create (Simple)** | `letta-agent-create-minimal` | `la-quick`  | Minimal agent creation                |
+| **Get Agent**       | `letta-agent-retrieve`       | `la-get`    | Retrieve agent details by ID          |
+| **List Agents**     | `letta-agent-list`           | `la-list`   | List all agents (paginated)           |
+| **Update Agent**    | `letta-agent-modify`         | `la-mod`    | Modify system prompt or models        |
+| **Delete Agent**    | `letta-agent-delete`         | `la-del`    | Delete an agent                       |
 
-- `letta-send-message` / `la-msg`
-- `letta-send-message-stream` / `la-stream`
-- `letta-messages-list` / `la-msgs`
-- `letta-messages-reset` / `la-reset`
+### 💬 Messaging
 
-### Memory Blocks
+| Operation          | Full Prefix                        | Short Alias    | Description                   |
+| :----------------- | :--------------------------------- | :------------- | :---------------------------- |
+| **Send Message**   | `letta-send-message`               | `la-msg`       | Send user message to agent    |
+| **Stream Message** | `letta-send-message-stream`        | `la-stream`    | Stream agent response (SSE)   |
+| **With Identity**  | `letta-send-message-with-identity` | `la-msg-id`    | Send message as specific user |
+| **List Messages**  | `letta-messages-list`              | `la-msg-list`  | Get conversation history      |
+| **Clear History**  | `letta-messages-reset`             | `la-msg-reset` | Wipe agent context window     |
 
-- `letta-block-create` / `lab-create`
-- `letta-block-attach` / `lab-attach`
-- `letta-block-detach` / `lab-detach`
-- `letta-block-list` / `lab-list`
+### 🧠 Memory & Storage
 
-### Folders & Files
+| Operation          | Full Prefix            | Short Alias  | Description                    |
+| :----------------- | :--------------------- | :----------- | :----------------------------- |
+| **Create Block**   | `letta-block-create`   | `lab-create` | Create reusable memory block   |
+| **Attach Block**   | `letta-block-attach`   | `lab-attach` | Add block to agent core memory |
+| **Create Archive** | `letta-archive-create` | `laa-create` | Create semantic vector store   |
+| **Add Passage**    | `letta-passage-create` | `laa-add`    | Add text to semantic memory    |
+| **Create Folder**  | `letta-folder-create`  | `laf-create` | Create file storage folder     |
+| **Upload File**    | `letta-file-upload`    | `laf-upload` | Upload document to folder      |
 
-- `letta-folder-create` / `laf-create`
-- `letta-folder-attach` / `laf-attach`
-- `letta-file-upload` / `laf-upload`
-- `letta-file-delete` / `laf-del`
+### 🛠️ Client & Tools
 
-### Archives
+| Operation           | Full Prefix                | Short Alias   | Description                   |
+| :------------------ | :------------------------- | :------------ | :---------------------------- |
+| **Init Client**     | `letta-client-init`        | `la-init`     | Initialize Cloud client       |
+| **Init Local**      | `letta-client-self-hosted` | `la-local`    | Initialize Self-hosted client |
+| **Create Tool**     | `letta-tool-create`        | `lat-create`  | Define custom Python tool     |
+| **Create Identity** | `letta-identity-create`    | `la-identity` | Create user identity profile  |
 
-- `letta-archive-create` / `laa-create`
-- `letta-archive-attach` / `laa-attach`
-- `letta-passage-create` / `laa-passage`
+## 📝 Example Usage
 
-### Tools
+### TypeScript
 
-- `letta-tool-create` / `lat-create`
-- `letta-tool-attach` / `lat-attach`
+```typescript
+// Type 'la-init'
+const client = new LettaClient({
+  apiKey: "YOUR_API_KEY",
+  projectId: "YOUR_PROJECT_ID",
+});
 
-## Links
+// Type 'la-create'
+const agent = await client.agents.create({
+  name: "support-bot",
+  memory_blocks: [
+    { label: "persona", value: "You are a helpful support agent." },
+  ],
+  model: "openai/gpt-4",
+});
+```
 
-- [Letta Docs](https://docs.letta.com)
-- [TypeScript SDK](https://www.npmjs.com/package/@letta-ai/letta-client)
-- [Python SDK](https://pypi.org/project/letta-client/)
+### Python
 
-## License
+```python
+# Type 'la-init'
+client = LettaClient(
+    api_key='YOUR_API_KEY',
+    project_id='YOUR_PROJECT_ID'
+)
 
-MIT
+# Type 'la-create'
+agent = client.agents.create(
+    name='support-bot',
+    memory_blocks=[
+        {'label': 'persona', 'value': 'You are a helpful support agent.'}
+    ],
+    model='openai/gpt-4'
+)
+```
+
+## 🔧 Requirements
+
+This extension contains snippets only. You must install the Letta SDK separately:
+
+**Node.js / TypeScript**
+
+```bash
+npm install @letta-ai/letta-client
+```
+
+**Python**
+
+```bash
+pip install letta
+```
+
+## 🤝 Contributing
+
+Issues and pull requests are welcome! Please check the [GitHub repository](https://github.com/YOUR-USERNAME/letta-snippets-vscode) for contribution guidelines.
+
+## 📄 License
+
+MIT License © 2025
