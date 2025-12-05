@@ -121,8 +121,10 @@ pip install letta
 
 ## 🤝 Contributing
 
-Issues and pull requests are welcome! Please check the [GitHub repository](https://github.com/YOUR-USERNAME/letta-snippets-vscode) for contribution guidelines.
+Issues and pull requests are welcome! Please check the [GitHub repository](https://github.com/Vedant020000/letta-snippets) for contribution guidelines.
 
 ## 📄 License
 
 MIT License © 2025
+
+Made With ❤️ By [Vedant0200](https://github.com/Vedant0200)
